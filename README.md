@@ -4,7 +4,7 @@ Heroku buildpack: Node.js with grunt support
 Supported Grunt versions: 0.3 and 0.4.
 See the Grunt [migration guide](https://github.com/gruntjs/grunt/wiki/Upgrading-from-0.3-to-0.4) if you are upgrading from 0.3.
 
-This is a fork of [Heroku's official Node.js buildpack](https://github.com/heroku/heroku-buildpack-nodejs) with added [Grunt](http://gruntjs.com/) support.
+This is a fork of [mbuchetics Node.js & grunt buildpack](https://github.com/mbuchetics/heroku-buildpack-nodejs-grunt.git) with added [Bower](http://bower.io/) support.
 Using this buildpack you do not need to commit the results of your Grunt tasks (e.g. minification and concatination of files), keeping your repository clean.
 
 After all the default Node.js and npm build tasks have finished, the buildpack checks if a Gruntfile (`Gruntfile.js`, `Gruntfile.coffee`or `grunt.js`) exists and executes the `heroku` task by running `grunt heroku`. For details about grunt and how to define tasks, check out the [offical documentation](http://gruntjs.com/getting-started). You must add grunt to the npm dependencies in your `package.json` file.
@@ -36,11 +36,11 @@ Usage
 
 Create a new app with this buildpack:
 
-    heroku create myapp --buildpack https://github.com/mbuchetics/heroku-buildpack-nodejs-grunt.git
+    heroku create myapp --buildpack https://github.com/onshape/heroku-buildpack-nodejs-grunt-bower.git
 
 Or add this buildpack to your current app:
 
-    heroku config:add BUILDPACK_URL=https://github.com/mbuchetics/heroku-buildpack-nodejs-grunt.git
+    heroku config:add BUILDPACK_URL=https://github.com/onshape/heroku-buildpack-nodejs-grunt-bower.git
 
 Set the `NODE_ENV` environment variable (e.g. `development` or `production`):
 
@@ -49,7 +49,7 @@ Set the `NODE_ENV` environment variable (e.g. `development` or `production`):
 Create your Node.js app and add a Gruntfile named  `Gruntfile.js` (or `Gruntfile.coffee` if you want to use CoffeeScript, or `grunt.js` if you are using Grunt 0.3) with a `heroku` task:
 
     grunt.registerTask('heroku:development', 'clean less mincss');
-    
+
 or
 
     grunt.registerTask('heroku:production', 'clean less mincss uglify');
@@ -87,7 +87,7 @@ Push to heroku
 Debugging
 ---------
 
-npm can be run with a verbose flag to help debugging if something fails when installing the dependencies. 
+npm can be run with a verbose flag to help debugging if something fails when installing the dependencies.
 
 * if the `VERBOSE` environment variable is set, npm is always run with verbose logging.
 * if `BUILDPACK_RETRY_VERBOSE` is set, npm is relaunched in verbose mode if npm failed.
